@@ -14316,6 +14316,20 @@ CombinedMatcher.prototype = {
 var defaultMatcher = new CombinedMatcher();
 
 function FindProxyForURL(url, host) {
+	if (isInNet(host, "127.0.0.1",  "255.0.0.0")){
+        return "DIRECT";
+    }
+    if (isInNet(host, "10.0.0.0",  "255.0.0.0")){
+        return "DIRECT";
+    }
+    if (isInNet(host, "169.224.11.0",  "255.255.255.0"))
+    {
+        return "DIRECT";
+    }
+    if (isInNet(host, "192.168.1.0",  "255.255.255.0"))
+    {
+        return "DIRECT";
+    }
 	if ( isPlainHostName(host) === true ) {
 		return direct;
 	}
@@ -14332,7 +14346,6 @@ function FindProxyForURL(url, host) {
 	if ( filter instanceof BlockingFilter ) {
 		return wall_proxy;
 	}
-
 	var strIp = dnsResolve(host);
 	if (!strIp) {
 		return wall_proxy;
