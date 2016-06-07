@@ -11,9 +11,9 @@ RUN yum -y install gcc automake make wget pam-devel openldap-devel cyrus-sasl-de
 RUN wget http://heanet.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz
 RUN tar zxvf ss5-3.8.9-8.tar.gz
 RUN cd ss5-3.8.9
-RUN ./configure
-RUN make
-RUN make install
+RUN /bin/bash ./configure
+RUN /bin/bash make
+RUN /bin/bash make install
 
 EXPOSE 1080/tcp
 ENTRYPOINT ["/run.sh"]
