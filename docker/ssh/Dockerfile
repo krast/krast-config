@@ -6,7 +6,7 @@ RUN chmod 755 /run.sh
 RUN mkdir /root/.ssh/
 RUN chmod 700 /root/.ssh/
 COPY id_rsa  /root/.ssh/
-RUN chmod 644 /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
 COPY known_hosts  /root/.ssh/
 RUN chmod 644 /root/.ssh/known_hosts
 RUN rm -rf /etc/yum.reops.d/
