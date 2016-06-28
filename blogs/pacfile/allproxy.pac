@@ -13,5 +13,13 @@ function FindProxyForURL(url, host) {
     {
         return "DIRECT";
     }
+    if (isInNet(host, "192.168.18.0",  "255.255.255.0"))
+    {
+        return "DIRECT";
+    }
+    if (isInNet(host, "192.168.188.0",  "255.255.255.0"))
+    {
+        return "DIRECT";
+    }
     return "SOCKS5 47.88.192.58:23;SOCKS 47.88.192.58:23;";
 }
