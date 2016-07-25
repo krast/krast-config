@@ -1,5 +1,5 @@
-var wall_proxy = "SOCKS5 krast.top:25;SOCKS krast.top:25";
-var nowall_proxy = "DIRECT;";
+var wall_proxy = "SOCKS5 krast.top:25;SOCKS krast.top:25;";
+var nowall_proxy = "SOCKS5 krast.top:23;SOCKS krast.top:23;";
 var direct = "DIRECT;";
 var auto_proxy = wall_proxy; // if you have something like COW proxy
 var ip_proxy = nowall_proxy;
@@ -14317,19 +14317,27 @@ var defaultMatcher = new CombinedMatcher();
 
 function FindProxyForURL(url, host) {
 	if (isInNet(host, "127.0.0.1",  "255.0.0.0")){
-        return "DIRECT";
-    }
-    if (isInNet(host, "10.0.0.0",  "255.0.0.0")){
-        return "DIRECT";
-    }
-    if (isInNet(host, "169.224.11.0",  "255.255.255.0"))
-    {
-        return "DIRECT";
-    }
-    if (isInNet(host, "192.168.1.0",  "255.255.255.0"))
-    {
-        return "DIRECT";
-    }
+			return "DIRECT";
+	}
+	if (isInNet(host, "10.0.0.0",  "255.0.0.0")){
+			return "DIRECT";
+	}
+	if (isInNet(host, "169.224.11.0",  "255.255.255.0"))
+	{
+			return "DIRECT";
+	}
+	if (isInNet(host, "192.168.1.0",  "255.255.255.0"))
+	{
+			return "DIRECT";
+	}
+	if (isInNet(host, "192.168.18.0",  "255.255.255.0"))
+	{
+			return "DIRECT";
+	}
+	if (isInNet(host, "192.168.188.0",  "255.255.255.0"))
+	{
+			return "DIRECT";
+	}
 	if ( isPlainHostName(host) === true ) {
 		return direct;
 	}

@@ -21,5 +21,5 @@ function FindProxyForURL(url, host) {
     {
         return "DIRECT";
     }
-    return "SOCKS5 krast.top:25;SOCKS krast.top:25;";
+    return "SOCKS5 krast.cn:23;SOCKS krast.cn:23;";
 }
