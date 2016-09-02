@@ -107,8 +107,8 @@ export PATH=$PATH:$M2_HOME/bin
 
 # http proxy
 # ----------
-alias proxy="export http_proxy=http://krast.cn:23; export https_proxy=http://krast.cn:23"
-alias proxysocks="export http_proxy=socks5://krast.cn:23; export https_proxy=socks5://krast.cn:23"
+alias proxy="export http_proxy=http://krast.top:23; export https_proxy=http://krast.cn:23"
+alias proxysocks="export http_proxy=socks5://krast.top:25; export https_proxy=socks5://krast.top:25"
 alias unproxy="unset http_proxy;unset https_proxy;"
 
 
