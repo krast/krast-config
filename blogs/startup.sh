@@ -47,6 +47,7 @@ docker run --name nginx -d --restart=always \
 # squid
 # -----
 docker run --name squid -d --restart=always \
+  --privileged \
   --publish 21:3128 \
   --volume /root/krast-config/blogs/squid/squid.conf:/etc/squid3/squid.conf:ro \
   --volume /srv/docker/squid/cache:/var/spool/squid3 \

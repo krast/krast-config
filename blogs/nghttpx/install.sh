@@ -1,4 +1,11 @@
 #!/bin/bash
+
+#    +------------+    +------------+    +------------+    +------------+
+#    |            |    |            |    |            |    |            |
+#    |   Chrome   +----+  nghttpx   +----+   Squid    +----+  Internet  |
+#    |            |    |            |    |            |    |            |
+#    +------------+    +------------+    +------------+    +------------+
+
 docker run -i --rm -p 444:3000 dit4c/nghttpx \
   --frontend-no-tls \
   --host-rewrite \
@@ -38,6 +45,3 @@ docker run --name nghttpx -d -p 444:3000 -v /data/spdy:/data \
     docker exec -ti nghttpx /bin/bash
 
 nghttpx -s -D --conf /data/etc/nghttpx.conf  --backend=krast.cn,3128 --frontend=*,3000 --frontend-no-tls
-
-
-echo test > test_$(date +%Y-%m-%d%H%M%S).txt

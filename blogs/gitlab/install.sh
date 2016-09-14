@@ -3,7 +3,7 @@
 free -h
 mkdir /swapfile
 cd /swapfile
-dd if=/dev/zero of=swap bs=1024 count=2000000
+dd if=/dev/zero of=swap bs=1024 count=4000000
 mkswap -f swap
 swapon swap
 
