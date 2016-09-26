@@ -4,6 +4,7 @@ docker exec -ti alpine /bin/sh
 
 mkdir -p /root/certs/
 cd /root/certs/
+
 openssl rsa -in server.key -out server-key.pem
 
 
