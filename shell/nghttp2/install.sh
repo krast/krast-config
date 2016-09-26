@@ -16,3 +16,8 @@ cd nghttp2 && autoreconf -i \
            && ./configure \
            && make \
            && make install-strip
+
+ln -s /usr/lib/systemd/system/nghttp2.service /etc/systemd/system/multi-user.target.wants/
+systemctl enable nghttp2
+
+mkdir -p /etc/nghttpx/

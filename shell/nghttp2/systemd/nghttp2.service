@@ -1,0 +1,12 @@
+[Unit]
+Description=HTTP/2 reverse proxy
+After=network.target squid.service
+Requires=network.target squid.service
+
+[Service]
+Type=forking
+LimitNOFILE=16384
+ExecStart=/usr/local/bin/nghttpx --conf=/etc/nghttpx/nghttpx.conf --pid-file=/var/run/nghttpx.pid --daemon
+
+[Install]
+WantedBy=multi-user.target
