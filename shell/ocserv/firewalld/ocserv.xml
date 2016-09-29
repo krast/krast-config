@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>ocserv</short>
+  <description>OpennConnect VPN Server</description>
+  <port protocol="tcp" port="443"/>
+  <port protocol="udp" port="443"/>
+  <port protocol="tcp" port="85"/>
+  <port protocol="udp" port="85"/>
+</service>

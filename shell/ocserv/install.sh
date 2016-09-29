@@ -20,6 +20,7 @@ make install
 mkdir -p /etc/ocserv
 mkdir -p /etc/ocserv/config-per-group
 
+useradd ocserv -s /sbin/nologin
 
 # Open ipv4 ip forward
 sysctl -w net.ipv4.ip_forward=1
@@ -28,16 +29,36 @@ sysctl -w net.ipv4.ip_forward=1
 iptables -t nat -A POSTROUTING -j MASQUERADE
 iptables -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
+#firealld-cmd
+firewall-cmd  --query-masquerade
+firewall-cmd --zone=public --permanent --add-masquerade
+#firewall-cmd --direct --permanent --add-rule ipv4 nat POSTROUTING 0 -o eth_ext -j MASQUERADE
+firewall-cmd --permanent --direct --add-passthrough ipv4 -I FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
+# enable service
+firewall-cmd --zone=public --permanent --list-services
+firewall-cmd --zone=public --permanent --add-service=ocserv
+
+# reload firewall
+firewall-cmd --reload
+
+# check firewall
+iptables -L -t nat |grep MASQUERADE
+iptables -t filter -L| grep TCPMSS
+iptables -L |grep 85
+
+# ref
 iptables -A FORWARD -s 192.168.99.0/24 -j ACCEPT
+iptables -t nat -A POSTROUTING -s 192.168.99.0/24 -o eth0 -j MASQUERADE
+iptables -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+iptables -A FORWARD -o vpns0 -j ACCEPT
+iptables -A FORWARD -i vpns0 -j ACCEPT
 
 iptables -t nat -A POSTROUTING -s 192.168.99.0/24 -o eth0 -j MASQUERADE
+iptables -A FORWARD -s 192.168.99.0/24 -j ACCEPT
+iptables -A INPUT -p tcp --dport 110 -j ACCEPT
+iptables -A INPUT -p udp --dport 110 -j ACCEPT
 
-iptables -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-
-iptables -A FORWARD -o vpns0 -j ACCEPT
-
-iptables -A FORWARD -i vpns0 -j ACCEPT
 
 # Enable TUN device
 mkdir -p /dev/net
@@ -45,5 +66,6 @@ mknod /dev/net/tun c 10 200
 chmod 600 /dev/net/tun
 
 ln -s /usr/lib/systemd/system/ocserv.service /etc/systemd/system/multi-user.target.wants/
+/usr/lib/firewalld/services/ocserv.xml
 
 ocpasswd -c /etc/ocserv/ocpasswd -g "All,Route" cmdiris

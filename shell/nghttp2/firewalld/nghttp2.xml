@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>nghttp2</short>
+  <description>HTTP/2 reverse proxy</description>
+  <port protocol="tcp" port="23"/>
+  <port protocol="udp" port="23"/>
+</service>

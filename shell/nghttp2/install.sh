@@ -21,3 +21,12 @@ ln -s /usr/lib/systemd/system/nghttp2.service /etc/systemd/system/multi-user.tar
 systemctl enable nghttp2
 
 mkdir -p /etc/nghttpx/
+
+# systemd
+ln -s /usr/lib/systemd/system/nghttp2.service /etc/systemd/system/multi-user.target.wants/
+
+# firewalld
+/usr/lib/firewalld/services/nghttp2.xml
+
+firewall-cmd --zone=public --permanent --list-services
+firewall-cmd --zone=public --permanent --add-service=nghttp2
