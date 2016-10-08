@@ -4,6 +4,8 @@
   <description>OpennConnect VPN Server</description>
   <port protocol="tcp" port="443"/>
   <port protocol="udp" port="443"/>
+  <port protocol="tcp" port="110"/>
+  <port protocol="udp" port="110"/>
   <port protocol="tcp" port="85"/>
   <port protocol="udp" port="85"/>
 </service>
