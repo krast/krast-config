@@ -1,0 +1,31 @@
+########################
+#   screenrc settings
+########################
+term screen-256color
+defencoding UTF-8
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+setenv PROMPT_COMMAND /bin/true
+logfile /opt/logs/screenlog_%t.log
+
+########################
+#   screenrc commands
+########################
+sessionname ump
+
+# prometheus
+# ---------------
+screen -L -t node_exporter bash
+stuff "cd /opt/node_exporter-0.13.0-rc.1.linux-amd64 && ./node_exporter && exit ^M"
+
+# prometheus
+# ---------------
+screen -L -t prometheus bash
+stuff "cd /opt/prometheus-1.2.1.linux-amd64 && ./prometheus -config.file=prometheus.yml -web.listen-address=:9090 && exit ^M"
+
+# grafana
+# -----------------
+screen -L -t grafana bash
+stuff "cd /opt/grafana-4.0.0-1476512308pre1/bin && ./grafana-server -config ../conf/defaults.ini && exit ^M"
+
+detach

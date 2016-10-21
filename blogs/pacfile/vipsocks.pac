@@ -1,5 +1,5 @@
-var wall_proxy = "SOCKS5 vpn04.iladder.win:110;SOCKS vpn04.iladder.win:110;";
-var nowall_proxy = "SOCKS5 vpn04.iladder.win:110;SOCKS vpn04.iladder.win:110;";
+var wall_proxy = "SOCKS5 vpn02.iladder.win:110;SOCKS vpn02.iladder.win:110;";
+var nowall_proxy = "SOCKS5 vpn02.iladder.win:110;SOCKS vpn02.iladder.win:110;";
 var direct = "DIRECT;";
 var auto_proxy = wall_proxy; // if you have something like COW proxy
 var ip_proxy = nowall_proxy;
@@ -14358,7 +14358,7 @@ function FindProxyForURL(url, host) {
        dnsDomainIs( host,".99bills.com")        ||
        dnsDomainIs( host,".wandafilm-dev.com")  ||
        dnsDomainIs( host,".wandaperformace.com")
-		 )
+      )
 
    {
      return "DIRECT";
