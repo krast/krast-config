@@ -1,0 +1,3 @@
+---
+- hosts: vpnservers
+  remote_user: root

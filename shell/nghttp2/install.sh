@@ -5,7 +5,7 @@ yum install -y openssl openssl-devel\
                libgcc libstdc++ \
                libev libev-devel \
                jemalloc jemalloc-devel \
-               libtool git \
+               libtool git
 
 #
 cd ~
@@ -30,4 +30,5 @@ ln -s /usr/lib/systemd/system/nghttp2.service /etc/systemd/system/multi-user.tar
 
 firewall-cmd --zone=public --permanent --list-services
 firewall-cmd --zone=public --permanent --add-service=nghttp2
+firewall-cmd --zone=public --permanent --delete-service=nghttp2
 firewall-cmd --reload

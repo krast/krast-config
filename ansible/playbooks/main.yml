@@ -1,0 +1,14 @@
+- hosts: vpnservers
+  remote_user: root
+  tasks:
+  - name: squid
+    service: name=squid state=stopped
+    notify:
+    - restart squid
+  handlers:
+  - name: restart squid
+    service: name=squid state=restarted
+  - name: restart nghttp2
+    service: name=nghttp2 state=restarted
+  - name: restart ocserv
+    service: name=ocserv state=restarted

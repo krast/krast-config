@@ -14341,6 +14341,13 @@ function FindProxyForURL(url, host) {
 	if (
        dnsDomainIs( host,".wanda.cn")           ||
        dnsDomainIs( host,".wanda.com.cn")       ||
+      )
+   {
+     return nowall_proxy;
+   }
+	if (
+       dnsDomainIs( host,".wanda.cn")           ||
+       dnsDomainIs( host,".wanda.com.cn")       ||
        dnsDomainIs( host,".wandafilm.com")      ||
        dnsDomainIs( host,".vans-china.com.cn")  ||
        dnsDomainIs( host,".vans-china.cn")      ||
@@ -14357,6 +14364,7 @@ function FindProxyForURL(url, host) {
        dnsDomainIs( host,".99bill.com")         ||
        dnsDomainIs( host,".99bills.com")        ||
        dnsDomainIs( host,".wandafilm-dev.com")  ||
+			 dnsDomainIs( host,".wanda-group.net")    ||
        dnsDomainIs( host,".wandaperformace.com")
       )
 
