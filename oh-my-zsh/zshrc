@@ -89,29 +89,49 @@ source $ZSH/oh-my-zsh.sh
 # java
 # ----
 export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home
-export JAVA_HOME=$JAVA_7_HOME
+export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home
+export JAVA_HOME=$JAVA_8_HOME
 #export CLASSPATH=".:$JAVA_HOME/lib/"
 
 # maven
 # -----
 export M2_HOME=/Applications/IntelliJ\ IDEA.app/Contents/plugins/maven/lib/maven3
-export MAVEN_OPTS="-DsocksProxyHost=krast.cn -DsocksProxyPort=23"
+#export MAVEN_OPTS="-DsocksProxyHost=vpn02.iladder.win -DsocksProxyPort=110"
+alias mvnins="mvn clean install -Dmaven.test.skip=true"
+alias mvnsbr="mvn spring-boot:run"
 
-# alias
-# -----
+# gradle
+# ------
+export GRADLE_HOME=/usr/local/Cellar/gradle/3.2.1/libexec
+
+# jdk alias
+# ---------
 alias jdk8='export JAVA_HOME=$JAVA_8_HOME'
 alias jdk7='export JAVA_HOME=$JAVA_7_HOME'
 alias jdk6='export JAVA_HOME=$JAVA_6_HOME'
-export PATH=$PATH:$M2_HOME/bin
 
 # http proxy
 # ----------
-alias proxy="export http_proxy=http://krast.top:23; export https_proxy=http://krast.cn:23"
-alias proxysocks="export http_proxy=socks5://krast.top:25; export https_proxy=socks5://krast.top:25"
+alias proxy="export http_proxy=http://krast.cn:23; export https_proxy=http://krast.cn:23"
+alias proxysocks="export http_proxy=socks5://vpn02.iladder.win:25; export https_proxy=socks5://vpn02.iladder.win:25"
+alias proxysocks4="export http_proxy=socks5://vpn04.iladder.win:25; export https_proxy=socks5://vpn04.iladder.win:25"
 alias unproxy="unset http_proxy;unset https_proxy;"
-
 
 # krast alias
 # -----------
-alias mvnins="mvn clean install -Dmaven.test.skip=true"
+alias kc="tmux new -s krast"
+alias kr="tmux attach -t krast"
+alias gitconfigwanda="git config --local user.name 'gujunjie' && git config --local user.email gujunjie6@wanda.cn"
+alias gm="/Users/krast/OneDrive/workspace/shell/github-ghe-mirror.sh"
+
+# github
+# ------
+export GITHUB_HOST=github.wanda-group.net
+alias git="hub"
+
+# system
+# ------
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export DISPLAY=:0.0
+export PATH=$PATH:$M2_HOME/bin:$GRADLE_HOME/bin
